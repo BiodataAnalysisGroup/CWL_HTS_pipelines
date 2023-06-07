@@ -1,0 +1,121 @@
+# ExpressionTools input for raw files:
+raw_files_directory:
+  class: Directory
+  path: /home/user/AshkenazimTrio
+
+### FASTQ file split ###
+input_file_split: "_R"
+input_file_split_fwd_single: "_R1"
+input_file_split_rev: "_R2"
+
+### QC and trimming options ###
+input_qc_check: false
+input_trimming_check: false
+
+### Trim galore ###
+# Trim Galore! accepts and produces standard or gzip compressed FastQ files
+# Trim Galore is set to auto-detect (it will try to auto-detect whether the Illumina universal, Nextera transposase or Illumina small RNA adapter sequence was used)
+# minimum quality to keep
+tg_quality: 30 # (default: 20)
+# minimum read length to keep
+tg_length: 50 # (defaut: 20)
+# output .gz compressed files
+tg_compression: true
+# output uncompressed files
+tg_do_not_compress: false
+# trimming file suffix (.fq.gz or .fq for compression equal to true or false, respectively)
+tg_trim_suffix: .fq.gz
+# strigency
+tg_strigency: 5
+
+# Reference genome
+reference_genome:
+  class: File
+  path: /home/user/gatk_hg38_resources/Homo_sapiens_assembly38.fasta
+
+### bwa mem ###
+# bwa mem predefined number of threads:
+bwa_mem_num_threads: 20
+
+## Samtools ###
+# threads:
+samtools_view_threads: 20
+samtools_fixmate_threads: 20
+samtools_sort_threads: 20
+samtools_flagstat_threads: 20
+# default options for filtering out based on SAM FLAG fields:
+# read unmapped (0x4)
+# not primary alignment (0x100)
+# supplementary alignment (0x800)
+samtools_view_readswithoutbits: 0 #0x904
+# (optional) set to 0 to avoid any filtering
+
+### Picard AddOrReplaceReadGroups ###
+# picard_addorreplacereadgroups_readGroups: true
+# picard_addorreplacereadgroups_rglb: WGS # WES
+picard_addorreplacereadgroups_rgpl: ILLUMINA
+
+# GATK - SplitIntervals
+gatk_splitintervals_include_intervalList:
+  class: File
+  path: /home/user/gatk_hg38_resources/wgs_calling_regions.hg38.interval_list
+gatk_splitintervals_scatter_count: 10
+
+### GATK - BQSR ###
+sub_bqsr_known_sites_1:
+  class: File
+  path: /home/user/Homo_sapiens_assembly38.dbsnp138.vcf.gz
+sub_bqsr_known_sites_2:
+  class: File
+  path: /home/user/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
+sub_bqsr_known_sites_3: 
+  class: File
+  path: /home/user/Homo_sapiens_assembly38.known_indels.vcf.gz
+sub_bqsr_interval_padding: 0
+
+# GATK Apply-BQSR
+
+# GATK HaplotypeCaller
+# sub_hc_native_pairHMM_threads: 20
+sub_hc_java_options: "'-Xmx8g'" 
+
+# GATK VariantFiltration inputs (gatk-VariantFiltration.cwl wrapper):
+VariantFiltration_window: 0
+VariantFiltration_cluster: 3
+# SNPs
+VariantFiltration_filter_name_snp: [FS60, QD2, MQ40, SOR3, MQRankSum125, ReadPosRankSum8]
+VariantFiltration_filter_snp: ["FS > 60.0", "QD < 2.0", "MQ < 40.0", "SOR > 3.0", "MQRankSum < -12.5", "ReadPosRankSum < -8.0"]
+# INDELs
+VariantFiltration_filter_name_indel: [FS200, QD2, SOR10, ReadPosRankSum20, InbreedingCoeff08]
+VariantFiltration_filter_indel: ["FS > 200.0", "QD < 2.0", "SOR > 10.0", "ReadPosRankSum < -20.0", "InbreedingCoeff < -0.8"]
+
+# GATK FilterVariantTranches
+FilterVariantTranches_resource_1: {
+  class: File,
+  path: /home/user/Homo_sapiens_assembly38.known_indels.vcf.gz
+}
+FilterVariantTranches_resource_2: {
+  class: File, 
+  path: /home/user/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
+}
+FilterVariantTranches_resource_3: {
+  class: File, 
+  path: /home/user/Homo_sapiens_assembly38.dbsnp138.vcf.gz
+}
+
+# bcftools view
+bcftools_view_include_hard_filters: 'FILTER="PASS"'
+bcftools_view_include_CNN_filters: 'FILTER="PASS" || FILTER="CNN_2D_SNP_Tranche_99.95_100.00" || FILTER="CNN_2D_INDEL_Tranche_99.40_100.00"'
+bcftools_view_threads: 20
+
+# ANNOVAR table_annovar.pl inputs (table-annovar.cwl wrapper):
+table_annovar_database_location:
+  class: Directory
+  path: /home/user/humandb
+table_annovar_build_over: hg38
+table_annovar_remove: true
+table_annovar_protocol: refGene,clinvar_20221231,gnomad312_genome 
+table_annovar_operation: g,f,f 
+table_annovar_vcfinput: true
+table_annovar_otherinfo: true
+table_annovar_convert_arg: "--allsample --withfreq"

@@ -1,0 +1,4 @@
+# Directory with FastQC *.zip files
+input_dir: 
+  class: Directory
+  path: ../FastQC_zip_files_directory

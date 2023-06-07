@@ -1,0 +1,162 @@
+# Directory with raw fastq files
+raw_files_directory: {
+  class: Directory, 
+  path: /home/user/H3K27me3_data
+}
+
+### FASTQ file split ###
+input_file_split: ".R"
+input_file_split_fwd_single: ".R1"
+input_file_split_rev: ".R2"
+
+### QC and trimming options ###
+input_qc_check: false
+input_trimming_check: false
+
+### Treatment & Control sample options ###
+input_treatment_samples: [
+  "CLLM1-H3K27me3-Ab",
+  "CLLM2-H3K27me3-Ab",
+  "CLLM3-H3K27me3-Ab",
+  "Sub4-1-H3K27me3-Ab",
+  "Sub4-2-H3K27me3-Ab",
+  "Sub4-3-H3K27me3-Ab",
+  "CLLUM1-H3K27me3-Ab",
+  "CLLUM2-H3K27me3-Ab",
+  "CLLUM3-H3K27me3-Ab",
+  "Sub1-1-H3K27me3-Ab",
+  "Sub1-2-H3K27me3-Ab",
+  "Sub1-3-H3K27me3-Ab"
+]
+input_control_samples: [
+  "Input-CLLM",
+  "Input-CLLM",
+  "Input-CLLM",
+  "Input-CLLM",
+  "Input-CLLM",
+  "Input-CLLM",
+  "Input-CLLUM",
+  "Input-CLLUM",
+  "Input-CLLUM",
+  "Input-CLLUM",
+  "Input-CLLUM",
+  "Input-CLLUM"
+]
+
+# Trimmomatic
+# SE
+trimmomatic_se_threads: 20
+trimmomatic_se_illuminaClip: "Trimmomatic-0.39/adapters/TruSeq3-SE.fa:3:30:10"
+trimmomatic_se_leading: 28
+trimmomatic_se_trailing: 28
+trimmomatic_se_minlen: 36
+# PE
+trimmomatic_pe_threads: 20
+trimmomatic_pe_illuminaClip: "Trimmomatic-0.39/adapters/TruSeq3-PE-2.fa:3:30:10"
+trimmomatic_pe_leading: 28
+trimmomatic_pe_trailing: 28
+trimmomatic_pe_minlen: 36
+
+# Hisat2
+hisat2_num_of_threads: 20
+# directory with hisat2 indexes
+hisat2_idx_directory:
+  class: Directory
+  path: /home/user/hg38_genome
+# basename of genome indexes
+hisat2_idx_basename: genome
+
+# SAMtools
+samtools_readswithoutbits: 4
+samtools_fixmate_threads: 20
+samtools_sort_threads: 20
+samtools_markdup_threads: 20
+samtools_view_threads: 20
+
+# Deeptools
+# blacklist file
+blackListFile: 
+  class: File
+  path: /home/user/hg38-blacklist.v2.bed
+# multiBamSummary
+multiBamSummary_threads: 20
+# plotCorrelation
+plotCorrelation_numbers: true
+plotCorrelation_method: spearman
+plotCorrelation_color: Blues
+plotCorrelation_title: "Spearman Correlation of Read Counts"
+plotCorrelation_plotType: heatmap
+plotCorrelation_outFileName: spearman_correlation_heatmap.png
+# plotCoverage
+plotCoverage_threads: 20
+plotCoverage_plotFileFormat: png
+plotCoverage_outFileName: coverage_plot.png
+# plotFingerprint
+plotFingerprint_threads: 20
+plotFingerprint_plotFileFormat: png
+plotFingerprint_outFileName: fingerprint_plot.png
+# bamCoverage
+bamCoverage_normalizeUsing: BPM # Bins Per Million mapped reads, same as TPM in RNA-seq
+bamCoverage_extendReads: 200
+bamCoverage_threads: 20
+# bamCoverage_effective_genome_size: 2913022398
+# computeMatrix
+computeMatrix_regions: 
+  class: File
+  path: /home/user/hg38_genome/hg38.refGene.transcript.gtf
+computeMatrix_threads: 20
+computeMatrix_upstream: 1000
+computeMatrix_outputFile: matrix.out
+computeMatrix_outFileSortedRegions: regions.out
+# plotHeatmap
+plotHeatmap_plotFileFormat: png
+plotHeatmap_outputFile: regions_heatmap.png
+
+# MACS2
+macs2_callpeak_bdg: true
+macs2_callpeak_gsize: hs # mm
+macs2_callpeak_format: BAM
+macs2_callpeak_broad: false
+macs2_callpeak_nomodel: false # true
+# Merge peaks
+#merge_peaks_wa: true
+# Merge bam files
+samtools_merge_threads: 20
+
+# ChIPQC & DiffBind
+metadata_table:
+  class: File
+  path: /home/user/H3K27me3_metadata_CLL.csv
+
+### ChIPQC ###
+ChIPQC_blacklist: 
+  class: File
+  path: /home/user/hg38-blacklist.v2.bed
+ChIPQC_annotation: hg38
+ChIPQC_consensus: true
+ChIPQC_bCount: true
+ChIPQC_facetBy: ["Condition"]
+
+### DiffBind ###
+DiffBind_consensus: ["DBA_CONDITION"]
+DiffBind_minOverlap: 3
+DiffBind_blacklist: 
+  class: File
+  path: /home/user/hg38-blacklist.v2.bed
+DiffBind_greylist: true
+DiffBind_cores: 16
+DiffBind_bParallel: true
+DiffBind_normalization: "DBA_NORM_LIB"
+DiffBind_library: "DBA_LIBSIZE_FULL"
+DiffBind_background: false
+DiffBind_design: "~Condition"
+DiffBind_reorderMeta_factor: ["Condition"]
+DiffBind_reorderMeta_value: ["Mutated"]
+DiffBind_retrieve_consensus: true
+# DiffBind_low_read_count_filter: 1
+# DiffBind_filterFun: max
+
+### ROSE ###
+rose_genome_build: HG38
+rose_stitch_distance: 12500
+rose_tss_distance: 2500

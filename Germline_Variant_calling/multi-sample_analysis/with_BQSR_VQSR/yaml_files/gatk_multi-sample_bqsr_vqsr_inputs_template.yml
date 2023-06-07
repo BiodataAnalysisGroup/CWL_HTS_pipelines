@@ -1,0 +1,152 @@
+### ExpressionTools input for raw files ###
+raw_files_directory:
+  class: Directory
+  path: /home/user/AshkenazimTrio
+### FASTQ file split ###
+input_file_split: "_R"
+input_file_split_fwd_single: "_R1"
+input_file_split_rev: "_R2"
+### QC and trimming options ###
+input_qc_check: false
+input_trimming_check: false
+
+### Trim galore ###
+
+# Trim Galore! accepts and produces standard or gzip compressed FastQ files
+# Trim Galore is set to auto-detect (it will try to auto-detect whether the Illumina universal, Nextera transposase or Illumina small RNA adapter sequence was used)
+
+# minimum quality to keep
+tg_quality: 30 # (default: 20)
+# minimum read length to keep
+tg_length: 50 # (defaut: 20)
+# output .gz compressed files
+tg_compression: true
+# output uncompressed files
+tg_do_not_compress: false
+# trimming file suffix (.fq.gz or .fq for compression equal to true or false, respectively)
+tg_trim_suffix: .fq.gz
+# strigency
+tg_strigency: 5
+
+### Reference genome ###
+reference_genome: 
+  class: File
+  path: /home/user/gatk_hg38_resources/Homo_sapiens_assembly38.fasta
+
+### bwa mem predefined number of threads ###
+bwa_mem_num_threads: 8 
+
+## Samtools ###
+# threads:
+samtools_view_threads: 8 
+samtools_fixmate_threads: 8 
+samtools_sort_threads: 8 
+samtools_flagstat_threads: 8 
+# options for filtering out based on SAM FLAG fields:
+# read unmapped (0x4)
+# not primary alignment (0x100)
+# supplementary alignment (0x800)
+# (optional) set to 0 to avoid any filtering
+samtools_view_readswithoutbits: 0 # 2308 
+# options for keeping reads based on SAM FLAG fields:
+# samtools_view_readswithbits: 2
+
+### picard AddOrReplaceReadGroups inputs ###
+# picard_addorreplacereadgroups_readGroups: true
+# picard_addorreplacereadgroups_rglb: WGS # WES
+picard_addorreplacereadgroups_rgpl: ILLUMINA
+
+### GATK - SplitIntervals ###
+gatk_splitintervals_include_intervalList:
+  class: File
+  path: /home/user/gatk_hg38_resources/wgs_calling_regions.hg38.interval_list
+gatk_splitintervals_scatter_count: 5 #10
+
+### GATK - BQSR ###
+sub_bqsr_known_sites_1:
+  class: File
+  path: /home/user/Homo_sapiens_assembly38.dbsnp138.vcf.gz
+sub_bqsr_known_sites_2:
+  class: File
+  path: /home/user/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
+sub_bqsr_known_sites_3: 
+  class: File
+  path: /home/user/Homo_sapiens_assembly38.known_indels.vcf.gz
+sub_bqsr_interval_padding: 0
+# sub_bqsr_hc_native_pairHMM_threads: 16
+sub_bqsr_hc_java_options: "'-Xmx6g'"
+
+### GATK VariantRecalibrator ###
+VariantRecalibrator_trust_all_polymorphic: true
+VariantRecalibrator_use_annotation: [FS, ReadPosRankSum, MQRankSum, QD, SOR, DP]
+
+# INDELs
+# Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
+vqsr_arguments_indels_1: ":mills,known=false,training=true,truth=true,prior=12"
+vqsr_known_sites_indels_1: {
+  class: File, 
+  path: /home/user/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
+}
+# Axiom_Exome_Plus.genotypes.all_populations.poly.hg38.vcf.gz
+vqsr_arguments_indels_2: ":axiomPoly,known=false,training=true,truth=false,prior=10"
+vqsr_known_sites_indels_2: {
+  class: File, 
+  path: /home/user/Axiom_Exome_Plus.genotypes.all_populations.poly.hg38.vcf.gz
+}
+# Homo_sapiens_assembly38.dbsnp138.vcf.gz
+vqsr_arguments_indels_3: "dbsnp,known=true,training=false,truth=false,prior=2"
+vqsr_known_sites_indels_3: {
+  class: File, 
+  path: /home/user/Homo_sapiens_assembly38.dbsnp138.vcf.gz
+}
+# VariantRecalibrator_truth_sensitivity_trance_indels: [100.0, 99.95, 99.9, 99.5, 99.0, 97.0, 96.0, 95.0, 94.0, 93.5, 93.0, 92.0, 91.0, 90.0]
+
+# SNPs
+# hapmap_3.3.hg38.vcf.gz
+vqsr_arguments_snps_1: ":hapmap,known=false,training=true,truth=true,prior=15"
+vqsr_known_sites_snps_1: {
+  class: File,
+  path: /home/user/hapmap_3.3.hg38.vcf.gz
+}
+# 1000G_omni2.5.hg38.vcf.gz
+vqsr_arguments_snps_2: ":omni,known=false,training=true,truth=true,prior=12"
+vqsr_known_sites_snps_2: {
+  class: File,
+  path: /home/user/1000G_omni2.5.hg38.vcf.gz
+}
+# 1000G_phase1.snps.high_confidence.hg38.vcf.gz
+vqsr_arguments_snps_3: ":1000G,known=false,training=true,truth=false,prior=10"
+vqsr_known_sites_snps_3: {
+  class: File,
+  path: /home/user/1000G_phase1.snps.high_confidence.hg38.vcf.gz
+}
+# Homo_sapiens_assembly38.dbsnp138.vcf.gz
+vqsr_arguments_snps_4: ":dbsnp,known=true,training=false,truth=false,prior=7"
+vqsr_known_sites_snps_4: {
+  class: File,
+  path: /home/user/Homo_sapiens_assembly38.dbsnp138.vcf.gz
+}
+# VariantRecalibrator_truth_sensitivity_trance_snps: [100.0, 99.95, 99.9, 99.8, 99.6, 99.5, 99.4, 99.3, 99.0, 98.0, 97.0, 90.0]
+
+### GATK ApplyVQSR ###
+# ApplyVQSR_ts_filter_level: 99.7
+
+### bcftools view ###
+bcftools_view_include_VQSR_filters: 'FILTER="PASS"'
+bcftools_view_threads: 8 
+
+### bcftools norm ###
+bcftools_norm_multiallelics: "-both"
+bcftools_norm_threads: 8 
+
+# ANNOVAR table_annovar.pl inputs (table-annovar.cwl wrapper):
+table_annovar_database_location:
+  class: Directory
+  path: /home/user/humandb
+table_annovar_build_over: hg38
+table_annovar_remove: true
+table_annovar_protocol: refGene,clinvar_20221231,gnomad312_genome
+table_annovar_operation: g,f,f
+table_annovar_vcfinput: true
+table_annovar_otherinfo: true
+table_annovar_convert_arg: "--allsample --withfreq"

@@ -1,0 +1,110 @@
+# List of inputs for RNA-Seq analysis (YAML format)
+
+### ExpressionTool input directory for raw files ###
+raw_files_directory: {
+  class: Directory,
+  path: ../RNA_Seq_data
+}
+
+### FASTQ file split ###
+input_file_split: "_R"
+input_file_split_fwd_single: "_R1"
+input_file_split_rev: "_R2"
+
+## QC and trimming options ###
+input_qc_check: true 
+input_trimming_check: true 
+
+# Trim_galore and FASTX-trimmer pre-processing steps are optional. Set this input to the appropriate value to select the files that will be processed further.
+premapping_input_check: "trim_galore" # Checks on which input files will pass to the next steps. Acceptable values are "raw_data", "fastx_trimmer" or "trim_galore".
+
+### Trim galore ###
+# Trim Galore! accepts and produces standard or gzip compressed FastQ files
+# Trim Galore is set to auto-detect (it will try to auto-detect whether the Illumina universal, Nextera transposase or Illumina small RNA adapter sequence was used)
+# minimum quality to keep
+tg_quality: 20 # (default: 20)
+# minimum read length to keep
+tg_length: 35 # (defaut: 20)
+# output .gz compressed files
+tg_compression: false
+# output uncompressed files
+tg_do_not_compress: true
+# suffix to capture trimmed fastq/fq files only (depends on compression choice!)
+tg_trim_suffix: .fq
+# strigency
+tg_strigency: 5
+
+### HISAT2 ###
+# hisat2 threads
+hisat2_num_of_threads: 20
+# reporting alignment in a format suitable for StringTie (transcript assembler):
+hisat2_alignments_tailored_trans_assemb: true
+# directory with hisat2 indexes
+hisat2_idx_directory: {
+  class: Directory,
+  path: /home/user/hg38_genome
+}
+# basename of genome indexes
+hisat2_idx_basename: genome
+
+### Samtools ###
+# read unmapped (0x4)
+# not primary alignment (0x100)
+# -> SAM flag: 260
+samtools_view_readswithoutbits: 260
+samtools_view_threads: 20
+samtools_sort_threads: 20
+
+### Stringtie ###
+# provide paths
+stringtie_guide_gff: {
+  class: File,
+  path: /home/user/hg38_genome/hg38.refGene.gtf
+}
+stringtie_cpus: 20
+stringtie_min_isoform_abundance: 0.1 # at least 10% fraction of the most abundant transcript
+stringtie_junction_coverage: 1.0 # default
+stringtie_min_read_coverage: 2.5 # default is 1
+stringtie_conservative_mode: false
+stringtie_transcript_merge_mode: true
+stringtie_out_gtf: stringtie_merged.gtf
+stringtie_expression_estimation_mode: true
+stringtie_ballgown_table_files: true
+
+### ballgown ###
+# file with phenotypes
+bg_phenotype_file: {
+  class: File,
+  path: ../mrna_cll_subsets_phenotypes.csv
+}
+bg_phenotype: stereotypedSubset
+bg_samples: sampleNames
+bg_confounders: cellType
+
+### featureCounts ###
+featureCounts_number_of_threads: 20
+# provide paths
+featureCounts_annotation_file:
+  class: File
+  path: /home/user/hg38_genome/hg38.refGene.gtf
+# output file name
+featureCounts_output_file: featureCounts_output.txt
+# output all overlapping features
+featureCounts_read_meta_feature_overlap: true
+
+### DESeq2 ###
+deseq2_metadata: {
+  class: File,
+  path: ../mrna_cll_subsets_phenotypes.csv
+}
+deseq2_phenotype: stereotypedSubset
+deseq2_samples: sampleNames
+deseq2_design: "~cellType+stereotypedSubset"
+deseq2_reference_level: six
+deseq2_contrast: true
+deseq2_numerator: six
+deseq2_denominator: eight
+deseq2_lfcThreshold: 1.0
+deseq2_alpha: 0.1
+deseq2_blind: false
+deseq2_transformation: vst

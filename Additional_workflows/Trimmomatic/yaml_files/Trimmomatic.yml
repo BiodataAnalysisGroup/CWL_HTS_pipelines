@@ -1,0 +1,24 @@
+# Directory with raw fastq files
+raw_files_directory: {
+  class: Directory, 
+  path: ../NGS_data
+}
+
+### FASTQ file split ###
+input_file_split: ".R"
+input_file_split_fwd_single: ".R1"
+input_file_split_rev: ".R2"
+
+# Trimmomatic
+# SE
+trimmomatic_se_threads: 20
+trimmomatic_se_illuminaClip: "Trimmomatic-0.39/adapters/TruSeq3-SE.fa:3:30:10"
+trimmomatic_se_leading: 28
+trimmomatic_se_trailing: 28
+trimmomatic_se_minlen: 36
+# PE
+trimmomatic_pe_threads: 20
+trimmomatic_pe_illuminaClip: "Trimmomatic-0.39/adapters/TruSeq3-PE-2.fa:3:30:10"
+trimmomatic_pe_leading: 28
+trimmomatic_pe_trailing: 28
+trimmomatic_pe_minlen: 36

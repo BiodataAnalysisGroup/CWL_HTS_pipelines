@@ -1,0 +1,83 @@
+# ExpressionTools input for raw files:
+raw_files_directory:
+  class: Directory
+  path: ../temp_data_3
+  # path: /mnt/e/kkyritsis_GenOptics_data/RNA_Seq_pilot_scenario/WholeExomeSeqDir
+
+### Trim galore ###
+# Trim Galore! accepts and produces standard or gzip compressed FastQ files
+# Trim Galore is set to auto-detect (it will try to auto-detect whether the Illumina universal, Nextera transposase or Illumina small RNA adapter sequence was used)
+# minimum quality to keep
+tg_quality: 30 # (default: 20)
+# minimum read length to keep
+tg_length: 50 # (defaut: 20)
+# output .gz compressed files
+tg_compression: true
+# output uncompressed files
+tg_do_not_compress: false
+# trimming file suffix (.fq.gz or .fq for compression equal to true or false, respectively)
+tg_trim_suffix: .fq.gz
+# strigency
+tg_strigency: 5
+
+### Reference genome ###
+reference_genome:
+  class: File
+  path: /home/kkyritsis/gatk_hg38_resources/Homo_sapiens_assembly38.fasta 
+
+# bwa mem inputs:
+# bwa mem predefined number of threads:
+bwa_mem_num_threads: 16
+
+## Samtools ###
+# threads:
+samtools_view_threads: 16
+samtools_fixmate_threads: 16
+samtools_sort_threads: 16
+samtools_flagstat_threads: 16
+# default options for filtering out based on SAM FLAG fields:
+# read unmapped (0x4)
+# not primary alignment (0x100)
+# supplementary alignment (0x800)
+samtools_view_readswithoutbits: 0x904
+# (optional) set to 0 to avoid any filtering
+
+# Picard AddOrReplaceReadGroups
+# picard_addorreplacereadgroups_readGroups: true
+# picard_addorreplacereadgroups_rglb: WGS # WES
+picard_addorreplacereadgroups_rgpl: ILLUMINA
+
+# GATK - SplitIntervals
+gatk_splitintervals_include_intervalList:
+  class: File
+  path: /home/kkyritsis/gatk_hg38_resources/wgs_calling_regions.hg38.interval_list
+gatk_splitintervals_scatter_count: 10
+
+# GATK HaplotypeCaller inputs
+sub_hc_native_pairHMM_threads: 16
+
+# GATK VariantFiltration inputs (gatk-VariantFiltration.cwl wrapper):
+VariantFiltration_window: 0
+VariantFiltration_cluster: 3
+# SNPs
+VariantFiltration_filter_name_snp: [FS60, QD2, MQ40, SOR3, MQRankSum125, ReadPosRankSum8]
+VariantFiltration_filter_snp: ["FS > 60.0", "QD < 2.0", "MQ < 40.0", "SOR > 3.0", "MQRankSum < -12.5", "ReadPosRankSum < -8.0"]
+# INDELs
+VariantFiltration_filter_name_indel: [FS200, QD2, SOR10, ReadPosRankSum20, InbreedingCoeff08]
+VariantFiltration_filter_indel: ["FS > 200.0", "QD < 2.0", "SOR > 10.0", "ReadPosRankSum < -20.0", "InbreedingCoeff < -0.8"]
+
+# bcftools view
+bcftools_view_include_hard_filters: 'FILTER="PASS"'
+bcftools_view_threads: 16
+
+# ANNOVAR table_annovar.pl inputs (table-annovar.cwl wrapper):
+table_annovar_database_location:
+  class: Directory
+  path: /home/kkyritsis/humandb
+table_annovar_build_over: hg38
+table_annovar_remove: true
+table_annovar_protocol: refGene,clinvar_20221231,gnomad312_genome #,cosmic70,snp129,snp130NonFlagged,popfreq_all_20150413
+table_annovar_operation: g,f,f #,f,f,f,f
+table_annovar_vcfinput: true
+table_annovar_otherinfo: true
+table_annovar_convert_arg: "--allsample --withfreq"

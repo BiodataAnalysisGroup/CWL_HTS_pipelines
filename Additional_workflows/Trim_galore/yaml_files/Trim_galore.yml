@@ -1,0 +1,26 @@
+### ExpressionTool input directory for raw files ###
+raw_files_directory: {
+  class: Directory,
+  path: ../NGS_data
+}
+
+### FASTQ file split ###
+input_file_split: "_R"
+input_file_split_fwd_single: "_R1"
+input_file_split_rev: "_R2"
+
+### Trim galore ###
+# Trim Galore! accepts and produces standard or gzip compressed FastQ files
+# Trim Galore is set to auto-detect (it will try to auto-detect whether the Illumina universal, Nextera transposase or Illumina small RNA adapter sequence was used)
+# minimum quality to keep
+tg_quality: 20 # (default: 20)
+# minimum read length to keep
+tg_length: 35 # (defaut: 20)
+# output .gz compressed files
+tg_compression: false
+# output uncompressed files
+tg_do_not_compress: true
+# suffix to capture trimmed fastq/fq files only (depends on compression choice!)
+tg_trim_suffix: .fq
+# strigency
+tg_strigency: 5

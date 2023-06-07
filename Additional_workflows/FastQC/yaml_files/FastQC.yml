@@ -1,0 +1,5 @@
+### ExpressionTool input directory for raw files ###
+raw_files_directory: {
+  class: Directory,
+  path: ../NGS_data # directory with NGS data for quality control
+}
