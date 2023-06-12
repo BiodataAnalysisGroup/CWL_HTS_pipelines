@@ -972,7 +972,7 @@ steps:
         in: 
             variant: gatk_CNNScoreVariants/output
             OUTPUT: 
-                valueFrom: $(inputs.variant.basename.split(".cnn.vcf")[0].concant(".cnn_filtered.vcf"))
+                valueFrom: $(inputs.variant.basename.split(".cnn.vcf")[0].concat(".cnn_filtered.vcf"))
             resource_1: FilterVariantTranches_resource_1
             resource_2: FilterVariantTranches_resource_2
             resource_3: FilterVariantTranches_resource_3
@@ -987,7 +987,7 @@ steps:
             threads: bcftools_view_threads
             include: bcftools_view_include_CNN_filters
             output_name: 
-                valueFrom: $(inputs.input.basename.split(".cnn_filtered.vcf")[0].concant(".bcftools_cnn_filtered.vcf"))
+                valueFrom: $(inputs.input.basename.split(".cnn_filtered.vcf")[0].concat(".bcftools_cnn_filtered.vcf"))
         out: [output]
     ### bcftools norm ###
     bcftools_norm_cnn:
