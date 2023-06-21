@@ -120,8 +120,6 @@ macs2_callpeak_broad: false
 macs2_callpeak_nomodel: false # true
 # Merge peaks
 #merge_peaks_wa: true
-# Merge bam files
-samtools_merge_threads: 20
 
 # ChIPQC & DiffBind
 metadata_table:

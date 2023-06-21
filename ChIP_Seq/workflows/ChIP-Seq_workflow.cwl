@@ -168,8 +168,6 @@ inputs:
         type: float? 
     macs2_qvalue: 
         type: float?
-    samtools_merge_threads:
-        type: int
     ### Differential binding ###
     ### ChIPQC & DiffBind ###
     metadata_table: 
