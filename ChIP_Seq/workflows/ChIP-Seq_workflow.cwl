@@ -494,7 +494,7 @@ outputs:
     o_DiffBind_rose_diffbind_normalized_counts:
         type: File?
         outputSource: DiffBind_rose/diffbind_normalized_counts
-    o_DiffBind_rose_diffbind_dba_object
+    o_DiffBind_rose_diffbind_dba_object:
         type: File?
         outputSource: DiffBind_rose/diffbind_dba_object
 
