@@ -55,9 +55,7 @@ cwltool --parallel --rm-container --rm-tmpdir --tmpdir-prefix $prefix <workflow-
 echo $(date +%Y_%m_%d-%T)
 ```
 ### Input files
-The worklflow accepts FASTQ files, `.gz` compressed or not. The user is required to specify the directory where the files reside. The workflow will automatically detected files with `.fq(.gz)`/`.fastq(.gz)` suffix as FASTQ format inputs, respectively.
-
-Furthermore, a file name convention is used in order to automatically identify input files, separate (i) single- and paired-end files as well as (ii) forward and reverse reads, and assign sample identifiers for downstream analysis. The file name convention is shown below:
+The worklflow accepts FASTQ files, `.gz` compressed or not. The user is required to specify the directory where the files reside. The workflow will automatically detected files with `.fq(.gz)`/`.fastq(.gz)` suffix as FASTQ format inputs, respectively. Furthermore, a file name convention is used in order to automatically identify input files, separate (i) single- and paired-end files as well as (ii) forward and reverse reads, and assign sample identifiers for downstream analysis. The file name convention is shown below:
 
 <p align="center">
 <img src="https://github.com/BiodataAnalysisGroup/kmerCountClassifier/blob/main/file_name_convention.png" alt="file name convention" width="500">
