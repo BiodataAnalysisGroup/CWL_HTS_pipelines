@@ -4,10 +4,12 @@
 
 ## Description
 Here, we established automated software pipelines for the asychronous analysis of Next-Generation Sequencing (NGS), single- and/or paired-end data from: 
+
 - RNA-Seq
 - ChIP-Seq
 - Germline variant calling 
-experiments by incorporating various software tools into functional workflows using the [Common Workflow Language](https://www.commonwl.org/) (CWL v1.0), an open standard for describing computational workflows for data-intensive science fields such as Bioinformatics ([Amstutz et al., 2016](https://doi.org/10.6084/m9.figshare.3115156.v2)). The pipelines are implemented as [CWL workflows](https://www.commonwl.org/v1.2/Workflow.html) and include a number of wrappers, in the form of [CWL Command Line tools](https://www.commonwl.org/v1.0/CommandLineTool.html), for various computational biology tools (Trimmomatic, HISAT2, BWA-MEM, samtools, etc.). To resolve any issues regarding software dependencies and compatibility, the ability of CWL to support operations through Docker containers was utilized. Docker is a containerization platform that allows for packaging an application along with its dependencies and running it in a self-contained unit called a container ([Merkel, 2014](https://www.linuxjournal.com/content/docker-lightweight-linux-containers-consistent-development-and-deployment)).
+
+experiments by incorporating various software tools into functional workflows using the [Common Workflow Language](https://www.commonwl.org/) (CWL v1.0), an open standard for describing computational workflows for data-intensive science fields such as Bioinformatics ([Amstutz et al., 2016](https://doi.org/10.6084/m9.figshare.3115156.v2)). The pipelines are implemented as [CWL Workflows](https://www.commonwl.org/v1.2/Workflow.html) and include a number of wrappers, in the form of [CWL CommandLineTools](https://www.commonwl.org/v1.0/CommandLineTool.html), for various computational biology tools (Trimmomatic, HISAT2, BWA-MEM, samtools, etc.). To resolve any issues regarding software dependencies and compatibility, the ability of CWL to support operations through Docker containers was utilized. Docker is a containerization platform that allows for packaging an application along with its dependencies and running it in a self-contained unit called a container ([Merkel, 2014](https://www.linuxjournal.com/content/docker-lightweight-linux-containers-consistent-development-and-deployment)).
 
 ## Setup
 
@@ -61,7 +63,9 @@ Furthermore, a file name convention is used in order to automatically identify i
 <img src="https://github.com/BiodataAnalysisGroup/kmerCountClassifier/blob/main/file_name_convention.png" alt="file name convention" width="500">
 </p>
 
-where **sample_name** corresponds to the unique file name of each sample, **file_split** defines the separator string pattern between the sampleName and the rest of the file name, **fwd_pattern** and **rev_pattern** the string patterns that define single-end or paired-end forward (contains **fwd_pattern**) and paired-end reverse files (contains **rev_pattern**). For example, the single-end FASTQ file SAMN18116076_1.fastq.gz contains SAMN18116076 as unique **sample_name**, `_` as file_split and `_1` as fwd corresponding to a single-end file. It is the same for the files SAMEA3751395_1.fastq.gz and SAMEA3751395_2.fastq.gz, except that here two files have the same **sample_name**, with one containing the **fwd_pattern** and the other the **rev_pattern**, thus identified as paired-end files of the same sample. These parameters can be specified within the YAML template, with **file_split**, **fwd_pattern** and **rev_pattern** corresponding to the **input_file_split**, **input_file_split_fwd_single** and **input_file_split_rev** parameters, respectively.
+where ``sample_name`` corresponds to the unique file name of each sample, ``file_split`` defines the separator string pattern between the sampleName and the rest of the file name, ``fwd_pattern`` and ``rev_pattern`` the string patterns that define single-end or paired-end forward (contains ``fwd_pattern``) and paired-end reverse files (contains ``rev_pattern``). For example, the single-end FASTQ file **SAMN18116076_1.fastq.gz** contains SAMN18116076 as unique ``sample_name``, `_` as file_split and `_1` as fwd corresponding to a single-end file. It is the same for the files **SAMEA3751395_1.fastq.gz** and **SAMEA3751395_2.fastq.gz**, except that here two files have the same ``sample_name``, with one containing the ``fwd_pattern`` and the other the ``rev_pattern``, thus identified as paired-end files of the same sample. 
+
+These parameters can be specified within the YAML template, with ``file_split``, ``fwd_pattern`` and ``rev_pattern`` corresponding to the ``input_file_split``, ``input_file_split_fwd_single`` and ``input_file_split_rev`` parameters, respectively.
 
 ## References
 
