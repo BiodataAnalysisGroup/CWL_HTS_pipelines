@@ -35,14 +35,17 @@ git clone git@github.com:BiodataAnalysisGroup/cwl_pipelines.git
 Configuration of inputs and parameters is performed using a YAML file, with an example template, that is thoroughly commented to simplify the process, being available for every workflow in `<workflow-of-interest>/yaml_files`.
 
 ```bash
+# change workdir
+cd <workflow-of-interest>
 # execute CWL workflow
-cd /<workflow-of-interest>
 cwltool workflows/<workflow-of-interest>.cwl yaml_files/<workflow-of-interest>.yml
 ```
 An easy way to keep a log for a running workflow includes a few extra shell commands:
 
 ```bash
 #!/bin/bash
+# change workdir
+cd <workflow-of-interest>
 # save stdout and stderr in log file and also show on screen
 exec > >(tee -a <log-file>.out) 2>&1
 # mark starting date and time in log file:
@@ -50,8 +53,8 @@ echo $(date +%Y_%m_%d-%T)
 # set custom directory and prefix for temporary (tmp) files
 prefix=/<tmp-directory>/<tmp-prefix>
 # e.g., prefix=/data/TMP_directory/TMP_ 
-# execute workflow
-cwltool --parallel --rm-container --rm-tmpdir --tmpdir-prefix $prefix <workflow-of-interest>/workflows/<workflow-of-interest>.cwl <workflow-of-interest>/yaml_files/<workflow-of-interest>.yml
+# execute CWL workflow
+cwltool --parallel --rm-container --rm-tmpdir --tmpdir-prefix $prefix workflows/<workflow-of-interest>.cwl yaml_files/<workflow-of-interest>.yml
 # mark ending date and time in log file:
 echo $(date +%Y_%m_%d-%T)
 ```
