@@ -35,8 +35,9 @@ git clone git@github.com:BiodataAnalysisGroup/cwl_pipelines.git
 Configuration of inputs and parameters is performed using a YAML file, with an example template, that is thoroughly commented to simplify the process, being available for every workflow in `<workflow-of-interest>/yaml_files`.
 
 ```bash
-# use CWL runner (e.g., cwltool)
-cwltool <workflow-of-interest>/workflows/<workflow-of-interest>.cwl <workflow-of-interest>/yaml_files/<workflow-of-interest>.yml
+# execute CWL workflow
+cd /<workflow-of-interest>
+cwltool workflows/<workflow-of-interest>.cwl yaml_files/<workflow-of-interest>.yml
 ```
 An easy way to keep a log for a running workflow includes a few extra shell commands:
 
