@@ -1,0 +1,13 @@
+SampleID,Tissue,Factor,Condition,Treatment,Replicate,ControlID
+CLLM1-H3K27me3-Ab,B-lymphocytes,H3K27me3,Mutated,Full-Media,1,Input-CLLM
+CLLM2-H3K27me3-Ab,B-lymphocytes,H3K27me3,Mutated,Full-Media,2,Input-CLLM
+CLLM3-H3K27me3-Ab,B-lymphocytes,H3K27me3,Mutated,Full-Media,3,Input-CLLM
+Sub4-1-H3K27me3-Ab,B-lymphocytes,H3K27me3,Mutated,Full-Media,4,Input-CLLM
+Sub4-2-H3K27me3-Ab,B-lymphocytes,H3K27me3,Mutated,Full-Media,5,Input-CLLM
+Sub4-3-H3K27me3-Ab,B-lymphocytes,H3K27me3,Mutated,Full-Media,6,Input-CLLM
+CLLUM1-H3K27me3-Ab,B-lymphocytes,H3K27me3,Unmutated,Full-Media,1,Input-CLLUM
+CLLUM2-H3K27me3-Ab,B-lymphocytes,H3K27me3,Unmutated,Full-Media,2,Input-CLLUM
+CLLUM3-H3K27me3-Ab,B-lymphocytes,H3K27me3,Unmutated,Full-Media,3,Input-CLLUM
+Sub1-1-H3K27me3-Ab,B-lymphocytes,H3K27me3,Unmutated,Full-Media,4,Input-CLLUM
+Sub1-2-H3K27me3-Ab,B-lymphocytes,H3K27me3,Unmutated,Full-Media,5,Input-CLLUM
+Sub1-3-H3K27me3-Ab,B-lymphocytes,H3K27me3,Unmutated,Full-Media,6,Input-CLLUM
