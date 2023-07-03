@@ -63,7 +63,7 @@ The worklflow accepts FASTQ files, `.gz` compressed or not. The user is required
 
 where ``sample_name`` corresponds to the unique file name of each sample, ``file_split`` defines the separator string pattern between the sampleName and the rest of the file name, ``fwd_pattern`` and ``rev_pattern`` the string patterns that define single-end or paired-end forward (contains ``fwd_pattern``) and paired-end reverse files (contains ``rev_pattern``). For example, the single-end FASTQ file **SAMN18116076_1.fastq.gz** contains SAMN18116076 as unique ``sample_name``, `_` as file_split and `_1` as fwd corresponding to a single-end file. It is the same for the files **SAMEA3751395_1.fastq.gz** and **SAMEA3751395_2.fastq.gz**, except that here two files have the same ``sample_name``, with one containing the ``fwd_pattern`` and the other the ``rev_pattern``, thus identified as paired-end files of the same sample. 
 
-These parameters can be specified within the YAML template, with ``file_split``, ``fwd_pattern`` and ``rev_pattern`` corresponding to the ``input_file_split``, ``input_file_split_fwd_single`` and ``input_file_split_rev`` parameters, respectively.
+These parameters can be specified within each YAML template by setting ``file_split``, ``fwd_pattern`` and ``rev_pattern`` (corresponding to the ``input_file_split``, ``input_file_split_fwd_single`` and ``input_file_split_rev`` parameters shown above, respectively) to the appropriate string values.
 
 ## References
 
