@@ -562,7 +562,6 @@ steps:
     ### bwa mem - Single end ###
     bwa_mem_single:
         run: ../wrappers/bwa-mem.cwl
-        scatterMethod: dotproduct
         scatter:
         - trimmed_fq_read1
         in:
