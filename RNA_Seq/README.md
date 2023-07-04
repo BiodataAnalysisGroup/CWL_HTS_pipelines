@@ -7,11 +7,11 @@ A CWL-based pipeline for processing RNA-Seq data (FASTQ format) and performing d
 Briefly, the workflow performs the following steps:
 
 1. Quality control of Illumina reads (FastQC)
-2. trimming of the reads (e.g., removal of adapter and/or low quality sequences) (Trim galore)
+2. Trimming of the reads (e.g., removal of adapter and/or low quality sequences) (Trim galore)
 3. (Optional)  custom processing of the reads using FASTA/Q Trimmer (part of the FASTX-toolkit) 
 4. Mapping to reference genome (HISAT2)
-5. Convertion of mapped reads from SAM (Sequence Alignment Map) to BAM (Binary Alignment Map) format
-6. Sorting mapped reads based on chromosomal coordinates
+5. Convertion of mapped reads from SAM (Sequence Alignment Map) to BAM (Binary Alignment Map) format (samtools)
+6. Sorting mapped reads based on chromosomal coordinates (samtools)
 
 Subsequently, two independent workflows are implemented for differential expression analysis at the transcript and gene level. 
 
