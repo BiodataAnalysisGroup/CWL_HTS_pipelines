@@ -2,7 +2,7 @@
 
 ## Description
 
-A CWL-based pipeline for calling small germline variants, namely SNPs and small INDELs, by processing data from Whole-genome Sequencing (WGS) or Targeted Sequencing (e.g., Whole-exome sequencing; WES) experiments.
+A CWL-based pipeline for calling small germline variants, namely SNPs and small INDELs, by processing data from Whole-genome Sequencing (WGS) or Targeted Sequencing (e.g., Whole-exome sequencing; WES) experiments. A pre-configured YAML template, based on validation analysis of publicly available HTS data, is available as example in the ``yaml_files`` folder.
 
 Briefly, the workflow performs the following steps:
 

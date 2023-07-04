@@ -2,7 +2,7 @@
 
 ## Description
 
-A CWL-based pipeline for processing RNA-Seq data (FASTQ format) and performing differential gene/transcript expression analysis. 
+A CWL-based pipeline for processing RNA-Seq data (FASTQ format) and performing differential gene/transcript expression analysis. A pre-configured YAML template, based on validation analysis of publicly available HTS data, is available as example in the ``yaml_files`` folder. Moreover, a table of metadata, based on the same validation analysis, is available in the file ``mrna_cll_subsets_phenotypes.csv`` to serve as an input example for the design of comparisons during differential expression analysis.
 
 Briefly, the workflow performs the following steps:
 
