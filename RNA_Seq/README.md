@@ -2,9 +2,54 @@
 
 ## Description
 
-## Software tools used in this pipeline
+A CWL-based pipeline for processing RNA-Seq data (FASTQ format) and performing differential gene/transcript expression analysis. 
+
+Briefly, the workflow performs the following steps:
+
+1. Quality control of Illumina reads (FastQC)
+2. trimming of the reads (e.g., removal of adapter and/or low quality sequences) (Trim galore)
+3. (Optional)  custom processing of the reads using FASTA/Q Trimmer (part of the FASTX-toolkit) 
+4. Mapping to reference genome (HISAT2)
+5. Convertion of mapped reads from SAM (Sequence Alignment Map) to BAM (Binary Alignment Map) format
+6. Sorting mapped reads based on chromosomal coordinates
+
+Subsequently, two independent workflows are implemented for differential expression analysis at the transcript and gene level. 
+
+**First**, following the [reference protocol](https://doi.org/10.1038/nprot.2016.095) for HISAT, StringTie and Ballgown transcript expression analysis, StringTie along with a reference transcript annotation GTF (Gene Transfer Format) file (if one is available) is used to:
+
+- Assemble transcripts for each RNA-Seq sample using the previous read alignments (BAM files)
+- Generate a global, non-redundant set of transcripts observed in any of the RNA-Seq samples
+- Estimate transcript abundances and generate read coverage tables for each RNA-Seq sample, based on the global, merged set of transcripts (rather than the reference) which is observed across all samples
+
+Ballgown program is then used to load the coverage tables generated in the previous step and perform statistical analyses for differential expression at the transcript level. Notably, the StringTie - Ballgown protocol applied here was selected to include potentially novel transcripts in the analysis. 
+
+**Second**, featureCounts is used to count reads that are mapped to selected genomic features, in this case genes by default, and generate a table of read counts per gene and sample. This table is passed as input to DESeq2 to perform differential expression analysis at the gene level. Both Ballgown and DESeq2 R scripts, along with their respective CWL wrappers, were designed to receive as input various parameters, such as experimental design, contrasts of interest, numeric thresholds, and hidden batch effects.
+
+## CWL wrappers/software tools used in this pipeline
+
+| Software | CWL.wrapper | CWL.type | Docker.image |
+|---|---|---|---|
+| - | get-raw-files.cwl | ExpressionTool | - |
+| - | split-single-paired.cwl | ExpressionTool | - |
+| Trim galore | trim-galore.cwl | CommandLineTool | kerstenbreuer/trim_galore:0.4.4_1.14_0.11.7 |
+| FastQC | fastqc.cwl | CommandLineTool | biowardrobe2/fastqc:v0.11.5 |
+| cp | cp.cwl | CommandLineTool | ubuntu:latest |
+| cp | rename.cwl | CommandLineTool | ubuntu:latest |
+| fastx_trimmer | fastx-trimmer.cwl | CommandLineTool | biowardrobe2/fastx_toolkit:v0.0.14 |
+| - | check-selected-steps.cwl | ExpressionTool | - |
+| HISAT2 | hisat2.cwl | CommandLineTool | greatfireball/hisat2 |
+| - | collect-hisat2-sam-files.cwl | ExpressionTool | - |
+| SAMtools | samtools-view.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
+| SAMtools | samtools-sort.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
+| Stringtie | stringtie.cwl | CommandLineTool | gawbul/docker-stringtie |
+| Stringtie | stringtie-for-ballgown.cwl | CommandLineTool | gawbul/docker-stringtie |
+| Ballgown | ballgown.cwl | CommandLineTool | biodataanalysisgroup/ballgown-rscript:v1.0 |
+| featureCounts | featureCounts.cwl | CommandLineTool | genomicpariscentre/featurecounts |
+| DESeq2 | DESeq2.cwl | CommandLineTool | biodataanalysisgroup/deseq2-rscript:v1.0 |
 
 ## Workflow structure
+
+A tree-based representation is available below for the inspection of all workflow steps. This tree-based hierarchical structure was produced using the [data.tree](https://cran.r-project.org/web/packages/data.tree/index.html) package.
 
 ```bash
 1   CWL-based RNA-Seq workflow                                                                         

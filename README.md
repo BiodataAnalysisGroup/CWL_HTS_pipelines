@@ -1,4 +1,4 @@
-# CWL pipelines for the analysis of Next-Generation Sequencing data
+# CWL-based pipelines for the analysis of High-Throughput Sequencing (HTS) data
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
