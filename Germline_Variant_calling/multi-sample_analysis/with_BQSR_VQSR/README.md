@@ -19,7 +19,7 @@ Briefly, the workflow performs the following steps:
 11. Creation of indexes for coordinate-sorted BAM files to enable fast random access (samtools)
 12. Splitting the reference genome into a predefined number of intervals for parallel processing (GATK SplitIntervals)
 
-Application of multi-sample workflow, during which multiple samples are concatenated into a single, unified VCF (Variant Calling Format) file, which contains the variant information for all samples:
+At this point the application of multi-sample workflow follows, during which multiple samples are concatenated into a single, unified VCF (Variant Calling Format) file, which contains the variant information for all samples:
 
 13. Application of Base Quality Score Recalibration (BQSR) (GATK BaseRecalibrator and ApplyBQSR tools)
 14. Variant calling in gVCF (genomic VCF) mode (-ERC GVCF) (GATK HaplotypeCaller)  
