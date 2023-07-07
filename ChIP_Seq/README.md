@@ -9,7 +9,7 @@ A CWL-based pipeline for processing ChIP-Seq data (FASTQ format) and performing:
 - Detection of super-enhancer regions
 - Differential binding analysis
 
-A pre-configured YAML template, based on validation analysis of publicly available HTS data, is available as example in the ``yaml_files`` folder. Moreover, tables of metadata, based on the same validation analysis, are available in the files ``EZH2_metadata_CLL.csv`` and ``H3K27me3_metadata_CLL.csv`` to serve as input examples for the design of comparisons during differential binding analysis. In addition, a list of ChIP-Seq blacklisted regions (human genome version 38; hg38) from the ENCODE project, which is can be used as input for the workflow, is provided in BED format (``hg38-blacklist.v2.bed``).
+A pre-configured YAML template, based on validation analysis of publicly available HTS data, is available as example in the ``yaml_files`` folder. Moreover, tables of metadata, based on the same validation analysis, are available in the files ``EZH2_metadata_CLL.csv`` and ``H3K27me3_metadata_CLL.csv`` to serve as input examples for the design of comparisons during differential binding analysis. In addition, a list of ChIP-Seq blacklisted regions (human genome version 38; hg38) from the ENCODE project, which is can be used as input for the workflow, is provided in BED format (``hg38-blacklist.v2.bed``). It is worth noting that regarding the RANK ORDERING OF SUPER-ENHANCERS (ROSE) analysis, the [ROSE repository](https://bitbucket.org/young_computation/rose/src/master/) from BitBucket was directly cloned to the ``/wrappers`` folder to allow pre-configured access for the respective CWL wrapper (``rose.cwl``). 
 
 Briefly, the workflow performs the following steps:
 
