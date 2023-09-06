@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
-Here, we established automated software pipelines for the asychronous analysis of Next-Generation Sequencing (NGS), single- and/or paired-end data from: 
+Here, we established automated software pipelines for the asychronous analysis of High-Throughput Sequencing (HTS), single- and/or paired-end data from: 
 
 - RNA-Seq
 - ChIP-Seq
