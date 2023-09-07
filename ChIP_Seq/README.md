@@ -81,7 +81,10 @@ Briefly, the workflow performs the following steps:
 
 A tree-based representation is available below for the inspection of all workflow steps. This tree-based hierarchical structure was produced using the [data.tree](https://cran.r-project.org/web/packages/data.tree/index.html) package.
 
-```bash
+<details>
+    <summary>Workflow structure</summary>
+
+    ```bash
 1   CWL-based ChIP-Seq workflow                                                                                       
 2    ¦--get_raw_files                                                                                                 
 3    ¦   ¦--run:                                                                                                      
@@ -795,3 +798,5 @@ A tree-based representation is available below for the inspection of all workflo
 711          ¦--diffbind_normalized_counts                                                                            
 712          °--diffbind_dba_object                                                                                   
 ```
+
+</details>

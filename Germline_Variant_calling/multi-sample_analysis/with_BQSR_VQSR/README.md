@@ -73,7 +73,10 @@ At this point the application of multi-sample workflow follows, during which mul
 
 A tree-based representation is available below for the inspection of all workflow steps. This tree-based hierarchical structure was produced using the [data.tree](https://cran.r-project.org/web/packages/data.tree/index.html) package.
 
-```bash
+<details>
+    <summary>Workflow structure</summary>
+
+    ```bash
 1   CWL-based germline variant calling (multi-sample) workflow                                                                 
 2    ¦--get_raw_files                                                                                                          
 3    ¦   ¦--run:                                                                                                               
@@ -646,3 +649,5 @@ A tree-based representation is available below for the inspection of all workflo
 570          ¦--multianno_txt                                                                                                  
 571          °--avinput                                                                                                        
 ```
+
+</details>
