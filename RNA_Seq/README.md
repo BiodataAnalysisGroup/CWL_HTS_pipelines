@@ -27,25 +27,25 @@ Ballgown program is then used to load the coverage tables generated in the previ
 
 ## CWL wrappers/software tools used in this pipeline
 
-| Software | CWL.wrapper | CWL.type | Docker.image |
-|---|---|---|---|
-| - | get-raw-files.cwl | ExpressionTool | - |
-| - | split-single-paired.cwl | ExpressionTool | - |
-| Trim galore | trim-galore.cwl | CommandLineTool | kerstenbreuer/trim_galore:0.4.4_1.14_0.11.7 |
-| FastQC | fastqc.cwl | CommandLineTool | biowardrobe2/fastqc:v0.11.5 |
-| cp | cp.cwl | CommandLineTool | ubuntu:latest |
-| cp | rename.cwl | CommandLineTool | ubuntu:latest |
-| fastx_trimmer | fastx-trimmer.cwl | CommandLineTool | biowardrobe2/fastx_toolkit:v0.0.14 |
-| - | check-selected-steps.cwl | ExpressionTool | - |
-| HISAT2 | hisat2.cwl | CommandLineTool | greatfireball/hisat2 |
-| - | collect-hisat2-sam-files.cwl | ExpressionTool | - |
-| SAMtools | samtools-view.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
-| SAMtools | samtools-sort.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
-| Stringtie | stringtie.cwl | CommandLineTool | gawbul/docker-stringtie |
-| Stringtie | stringtie-for-ballgown.cwl | CommandLineTool | gawbul/docker-stringtie |
-| Ballgown | ballgown.cwl | CommandLineTool | biodataanalysisgroup/ballgown-rscript:v1.0 |
-| featureCounts | featureCounts.cwl | CommandLineTool | genomicpariscentre/featurecounts |
-| DESeq2 | DESeq2.cwl | CommandLineTool | biodataanalysisgroup/deseq2-rscript:v1.0 |
+| Software | Version | CWL.wrapper | CWL.type | Docker.image |
+|---|---|---|---|---|
+| - |  - | get-raw-files.cwl | ExpressionTool | - |
+| - |  - | split-single-paired.cwl | ExpressionTool | - |
+| Trim galore | 0.4.4 | trim-galore.cwl | CommandLineTool | kerstenbreuer/trim_galore:0.4.4_1.14_0.11.7 |
+| FastQC | 0.11.5 | fastqc.cwl | CommandLineTool | biowardrobe2/fastqc:v0.11.5 |
+| cp | latest | cp.cwl | CommandLineTool | ubuntu:latest |
+| cp | latest | rename.cwl | CommandLineTool | ubuntu:latest |
+| fastx_trimmer | 0.0.14 | fastx-trimmer.cwl | CommandLineTool | biowardrobe2/fastx_toolkit:v0.0.14 |
+| - | - | check-selected-steps.cwl | ExpressionTool | - |
+| HISAT2 | 2.1.0 | hisat2.cwl | CommandLineTool | greatfireball/hisat2 |
+| - | - | collect-hisat2-sam-files.cwl | ExpressionTool | - |
+| SAMtools | 1.14 | samtools-view.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
+| SAMtools | 1.14 | samtools-sort.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
+| Stringtie | 1.3.3 | stringtie.cwl | CommandLineTool | gawbul/docker-stringtie |
+| Stringtie | 1.3.3 | stringtie-for-ballgown.cwl | CommandLineTool | gawbul/docker-stringtie |
+| Ballgown | 2.32.0 | ballgown.cwl | CommandLineTool | biodataanalysisgroup/ballgown-rscript:v1.0 |
+| featureCounts | 1.5.3 | featureCounts.cwl | CommandLineTool | genomicpariscentre/featurecounts |
+| DESeq2 | 1.40.1 | DESeq2.cwl | CommandLineTool | biodataanalysisgroup/deseq2-rscript:v1.0 |
 
 ## Workflow structure
 
