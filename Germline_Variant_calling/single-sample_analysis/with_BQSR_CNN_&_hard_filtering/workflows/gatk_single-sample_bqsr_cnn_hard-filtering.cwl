@@ -614,7 +614,7 @@ steps:
             randomseed: samtools_view_randomseed
             region: samtools_view_region
             readsinlibrary: samtools_view_readsinlibrary
-            output_name: # gather_bwa_sam_files/names_bam_raw
+            output_name: 
                 valueFrom: $(inputs.input.basename.split(".sam")[0].concat(".bam"))
         out: [output]
     ### samtools sort by read names ###
