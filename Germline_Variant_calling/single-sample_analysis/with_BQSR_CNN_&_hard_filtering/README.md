@@ -32,42 +32,42 @@ At this point the application of single-sample workflow follows, during which mu
 
 ## CWL wrappers/software tools used in this pipeline
 
-| CWL.Subworkflow | Software | CWL.wrapper | CWL.type | Docker.image |
-|---|---|---|---|---|
-| - | - | get-raw-files.cwl | ExpressionTool | - |
-| - | - | split-single-paired_v2.cwl | ExpressionTool | - |
-| - | Trim galore | trim-galore.cwl | CommandLineTool | kerstenbreuer/trim_galore:0.4.4_1.14_0.11.7 |
-| - | FastQC | fastqc.cwl | CommandLineTool | biowardrobe2/fastqc:v0.11.5 |
-| - | cp | cp.cwl | CommandLineTool | ubuntu:latest |
-| - | cp | rename.cwl | CommandLineTool | ubuntu:latest |
-| - | - | check_trimming.cwl | ExpressionTool | - |
-| - | zcat/grep/head/cut/sed/awk | fastq_RG_extraction.cwl | CommandLineTool | ubuntu:latest |
-| - | - | split-paired-read1-read2.cwl | ExpressionTool | - |
-| - | bwa-mem | bwa-mem.cwl | CommandLineTool | quay.io/biocontainers/bwa:0.7.17--h5bf99c6_8 |
-| - | - | gather-bwa-sam-files_single_v2.cwl | ExpressionTool | - |
-| - | SAMtools | samtools-view.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
-| - | SAMtools | samtools-sort.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
-| - | SAMtools | samtools-fixmate.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
-| - | Picard tools | picard-AddOrReplaceReadGroups.cwl | CommandLineTool | quay.io/biocontainers/picard:2.26.7--hdfd78af_0 |
-| - | Picard tools | picard-MarkDuplicates.cwl | CommandLineTool | quay.io/biocontainers/picard:2.26.7--hdfd78af_0 |
-| - | SAMtools | samtools-flagstat.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
-| - | GATK4 | gatk-SplitIntervals.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
-| - | SAMtools | samtools-index.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
-| gatk-bqsr-subworkflow.cwl | GATK4 | gatk-BaseRecalibrator.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
-| - | GATK4 | gatk-GatherBQSRReports.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
-| - | GATK4 | gatk-ApplyBQSR.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
-| gatk-haplotypecaller-subworkflow.cwl | GATK4 | gatk-HaplotypeCaller_single_v1.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
-| - | GATK4 | gatk-MergeVCFs.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
-| - | GATK4 | gatk-SelectVariants.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
-| - | GATK4 | gatk-VariantFiltration.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
-| - | bgzip | bgzip.cwl | CommandLineTool | bioslimcontainers/tabix:1.7 |
-| - | tabix | tabix.cwl | CommandLineTool | bioslimcontainers/tabix:1.7 |
-| - | BCFtools | bcftools-concat.cwl | CommandLineTool | biocontainers/bcftools:v1.5_cv3 |
-| - | BCFtools | bcftools-view.cwl | CommandLineTool | biocontainers/bcftools:v1.5_cv3 |
-| - | BCFtools | bcftools-norm.cwl | CommandLineTool | biocontainers/bcftools:v1.5_cv3 |
-| - | GATK4 | gatk-CNNScoreVariants.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
-| - | GATK4 | gatk-FilterVariantTranches.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
-| - | ANNOVAR | table-annovar.cwl | CommandLineTool | bioinfochrustrasbourg/annovar:2018Apr16 |
+| CWL.Subworkflow | Version | Software | CWL.wrapper | CWL.type | Docker.image |
+|---|---|---|---|---|---|
+| - | - | - | get-raw-files.cwl | ExpressionTool | - |
+| - | - | - | split-single-paired_v2.cwl | ExpressionTool | - |
+| - | 0.4.4 | Trim galore | trim-galore.cwl | CommandLineTool | kerstenbreuer/trim_galore:0.4.4_1.14_0.11.7 |
+| - | 0.11.5 | FastQC | fastqc.cwl | CommandLineTool | biowardrobe2/fastqc:v0.11.5 |
+| - | latest | cp | cp.cwl | CommandLineTool | ubuntu:latest |
+| - | latest | cp | rename.cwl | CommandLineTool | ubuntu:latest |
+| - | - | - | check_trimming.cwl | ExpressionTool | - |
+| - | latest | zcat/grep/head/cut/sed/awk | fastq_RG_extraction.cwl | CommandLineTool | ubuntu:latest |
+| - | - | - | split-paired-read1-read2.cwl | ExpressionTool | - |
+| - | 0.7.17-r1188 | bwa-mem | bwa-mem.cwl | CommandLineTool | quay.io/biocontainers/bwa:0.7.17--h5bf99c6_8 |
+| - | - | - | gather-bwa-sam-files_single_v2.cwl | ExpressionTool | - |
+| - | 1.14 | SAMtools | samtools-view.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
+| - | 1.14 | SAMtools | samtools-sort.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
+| - | 1.14 | SAMtools | samtools-fixmate.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
+| - | 2.26.7 | AddOrReplaceReadGroups (Picard tools) | picard-AddOrReplaceReadGroups.cwl | CommandLineTool | quay.io/biocontainers/picard:2.26.7--hdfd78af_0 |
+| - | 2.26.7 | MarkDuplicates (Picard tools) | picard-MarkDuplicates.cwl | CommandLineTool | quay.io/biocontainers/picard:2.26.7--hdfd78af_0 |
+| - | 1.14 | SAMtools | samtools-flagstat.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
+| - | 4.3.0.0 | SplitIntervals (GATK4) | gatk-SplitIntervals.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
+| - | 1.14 | SAMtools | samtools-index.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
+| gatk-bqsr-subworkflow.cwl | 4.3.0.0 | BaseRecalibrator (GATK4) | gatk-BaseRecalibrator.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
+| - |  4.3.0.0 | GatherBQSRReports (GATK4) | gatk-GatherBQSRReports.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
+| - |  4.3.0.0 | ApplyBQSR (GATK4) | gatk-ApplyBQSR.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
+| gatk-haplotypecaller-subworkflow.cwl |  4.3.0.0 | HaplotypeCaller (GATK4) | gatk-HaplotypeCaller_single_v1.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
+| - |  4.3.0.0 | MergeVCFs (GATK4) | gatk-MergeVCFs.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
+| - |  4.3.0.0 | SelectVariants (GATK4) | gatk-SelectVariants.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
+| - |  4.3.0.0 | VariantFiltration (GATK4) | gatk-VariantFiltration.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
+| - | 1.7 | bgzip | bgzip.cwl | CommandLineTool | bioslimcontainers/tabix:1.7 |
+| - | 1.7 | tabix | tabix.cwl | CommandLineTool | bioslimcontainers/tabix:1.7 |
+| - | 1.5 | BCFtools | bcftools-concat.cwl | CommandLineTool | biocontainers/bcftools:v1.5_cv3 |
+| - | 1.5 | BCFtools | bcftools-view.cwl | CommandLineTool | biocontainers/bcftools:v1.5_cv3 |
+| - | 1.5 | BCFtools | bcftools-norm.cwl | CommandLineTool | biocontainers/bcftools:v1.5_cv3 |
+| - |  4.3.0.0 | CNNScoreVariants (GATK4) | gatk-CNNScoreVariants.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
+| - |  4.3.0.0 | FilterVariantTranches (GATK4) | gatk-FilterVariantTranches.cwl | CommandLineTool | broadinstitute/gatk:4.3.0.0 |
+| - | 2018-04-16 00:47:49 -0400 (Mon, 16 Apr 2018) | ANNOVAR | table-annovar.cwl | CommandLineTool | bioinfochrustrasbourg/annovar:2018Apr16 |
 
 ## Workflow structure
 
