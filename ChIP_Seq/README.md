@@ -36,46 +36,46 @@ Briefly, the workflow performs the following steps:
 
 ## CWL wrappers/software tools used in this pipeline
 
-| Software | CWL.wrapper | CWL.type | Docker.image |
-|---|---|---|---|
-| - | get-raw-files.cwl | ExpressionTool | - |
-| - | split-single-paired_v2.cwl | ExpressionTool | - |
-| Trimmomatic | Trimmomatic_SE.cwl | CommandLineTool | staphb/trimmomatic:latest |
-| Trimmomatic | Trimmomatic_PE.cwl | CommandLineTool | staphb/trimmomatic:latest |
-| FastQC | fastqc.cwl | CommandLineTool | biowardrobe2/fastqc:v0.11.5 |
-| cp | cp.cwl | CommandLineTool | ubuntu:latest |
-| cp | rename.cwl | CommandLineTool | ubuntu:latest |
-| - | check_trimming.cwl | ExpressionTool | - |
-| HISAT2 | hisat2_v2.cwl | CommandLineTool | greatfireball/hisat2 |
-| - | collect-hisat2-sam-files.cwl | ExpressionTool | - |
-| SAMtools | samtools-view.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
-| SAMtools | samtools-sort.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
-| SAMtools | samtools-fixmate.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
-| SAMtools | samtools-markdup.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
-| SAMtools | samtools-index.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
-| Deeptools  | multiBamSummary.cwl | CommandLineTool | kerstenbreuer/deeptools:3.1.1 |
-| Deeptools  | plotCorrelation.cwl | CommandLineTool | kerstenbreuer/deeptools:3.1.1 |
-| Deeptools  | plotCoverage.cwl | CommandLineTool | kerstenbreuer/deeptools:3.1.1 |
-| Deeptools  | plotFingerprint.cwl | CommandLineTool | kerstenbreuer/deeptools:3.1.1 |
-| Deeptools  | bamCoverage.cwl | CommandLineTool | kerstenbreuer/deeptools:3.1.1 |
-| Deeptools  | computeMatrix.cwl | CommandLineTool | kerstenbreuer/deeptools:3.1.1 |
-| Deeptools  | plotHeatmap.cwl | CommandLineTool | kerstenbreuer/deeptools:3.1.1 |
-| - | separate_control_treatment_files.cwl | ExpressionTool | - |
-| MACS2 | macs2-callpeak.cwl | CommandLineTool | biowardrobe2/macs2:v2.1.1 |
-| cat/awk/csvtk | table_total_peaks.cwl | CommandLineTool | quay.io/biocontainers/csvtk:0.23.0--h9ee0642_0 |
-| sort | sort.cwl | CommandLineTool | ubuntu:latest |
-| bedtools | bedtools-merge.cwl | CommandLineTool | staphb/bedtools:2.30.0 |
-| bedtools | bedtools-intersect.cwl | CommandLineTool | staphb/bedtools:2.30.0 |
-| bedtools | bedtools-coverage.cwl | CommandLineTool | staphb/bedtools:2.30.0 |
-| awk | awk.cwl | CommandLineTool | ubuntu:latest |
-| paste | paste.cwl | CommandLineTool | ubuntu:latest |
-| printf | printf.cwl | CommandLineTool | ubuntu:latest |
-| ChIPQC | ChIPQC.cwl | CommandLineTool | biodataanalysisgroup/chipqc-diffbind-rscripts:v1.0 |
-| DiffBind | DiffBind.cwl | CommandLineTool | biodataanalysisgroup/chipqc-diffbind-rscripts:v1.0 |
-| bedtools | bedtools-intersect-narrowPeak.cwl | CommandLineTool | staphb/bedtools:2.30.0 |
-| awk | bed_to_rose_gff.cwl | CommandLineTool | ubuntu:latest |
-| ROSE | rose.cwl | CommandLineTool | biodataanalysisgroup/rose_main:v1.0 |
-| awk | enhancer_bed_processing.cwl | CommandLineTool | ubuntu:latest |
+| Software | Version | CWL.wrapper | CWL.type | Docker.image |
+|---|---|---|---|---|
+| - |  - | get-raw-files.cwl | ExpressionTool | - |
+| - |  - | split-single-paired_v2.cwl | ExpressionTool | - |
+| Trimmomatic | 0.39 | Trimmomatic_SE.cwl | CommandLineTool | staphb/trimmomatic:latest |
+| Trimmomatic | 0.39 | Trimmomatic_PE.cwl | CommandLineTool | staphb/trimmomatic:latest |
+| FastQC | 0.11.5 | fastqc.cwl | CommandLineTool | biowardrobe2/fastqc:v0.11.5 |
+| cp | latest | cp.cwl | CommandLineTool | ubuntu:latest |
+| cp | latest | rename.cwl | CommandLineTool | ubuntu:latest |
+| - |  - | check_trimming.cwl | ExpressionTool | - |
+| HISAT2 | 2.1.0 | hisat2_v2.cwl | CommandLineTool | greatfireball/hisat2 |
+| - |  - | collect-hisat2-sam-files.cwl | ExpressionTool | - |
+| SAMtools | 1.14 | samtools-view.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
+| SAMtools | 1.14 | samtools-sort.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
+| SAMtools | 1.14 | samtools-fixmate.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
+| SAMtools | 1.14 | samtools-markdup.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
+| SAMtools | 1.14 | samtools-index.cwl | CommandLineTool | quay.io/biocontainers/samtools:1.14--hb421002_0 |
+| Deeptools  | 3.1.1 | multiBamSummary.cwl | CommandLineTool | kerstenbreuer/deeptools:3.1.1 |
+| Deeptools  | 3.1.1 | plotCorrelation.cwl | CommandLineTool | kerstenbreuer/deeptools:3.1.1 |
+| Deeptools  | 3.1.1 | plotCoverage.cwl | CommandLineTool | kerstenbreuer/deeptools:3.1.1 |
+| Deeptools  | 3.1.1 | plotFingerprint.cwl | CommandLineTool | kerstenbreuer/deeptools:3.1.1 |
+| Deeptools  | 3.1.1 | bamCoverage.cwl | CommandLineTool | kerstenbreuer/deeptools:3.1.1 |
+| Deeptools  | 3.1.1 | computeMatrix.cwl | CommandLineTool | kerstenbreuer/deeptools:3.1.1 |
+| Deeptools  | 3.1.1 | plotHeatmap.cwl | CommandLineTool | kerstenbreuer/deeptools:3.1.1 |
+| - |  - | separate_control_treatment_files.cwl | ExpressionTool | - |
+| MACS2 | 2.1.1 | macs2-callpeak.cwl | CommandLineTool | biowardrobe2/macs2:v2.1.1 |
+| cat/awk/csvtk | 0.23.0 (csvtk) | table_total_peaks.cwl | CommandLineTool | quay.io/biocontainers/csvtk:0.23.0--h9ee0642_0 |
+| sort | latest | sort.cwl | CommandLineTool | ubuntu:latest |
+| bedtools | 2.30.0 | bedtools-merge.cwl | CommandLineTool | staphb/bedtools:2.30.0 |
+| bedtools | 2.30.0 | bedtools-intersect.cwl | CommandLineTool | staphb/bedtools:2.30.0 |
+| bedtools | 2.30.0 | bedtools-coverage.cwl | CommandLineTool | staphb/bedtools:2.30.0 |
+| awk | latest | awk.cwl | CommandLineTool | ubuntu:latest |
+| paste | latest | paste.cwl | CommandLineTool | ubuntu:latest |
+| printf | latest | printf.cwl | CommandLineTool | ubuntu:latest |
+| ChIPQC | 1.36.0 | ChIPQC.cwl | CommandLineTool | biodataanalysisgroup/chipqc-diffbind-rscripts:v1.0 |
+| DiffBind | 3.10.0 | DiffBind.cwl | CommandLineTool | biodataanalysisgroup/chipqc-diffbind-rscripts:v1.0 |
+| bedtools | 2.30.0 | bedtools-intersect-narrowPeak.cwl | CommandLineTool | staphb/bedtools:2.30.0 |
+| awk | latest | bed_to_rose_gff.cwl | CommandLineTool | ubuntu:latest |
+| ROSE | [Retrieved in 09/2023 from Bitbucket](https://bitbucket.org/young_computation/rose/src/master/) | rose.cwl | CommandLineTool | biodataanalysisgroup/rose_main:v1.0 |
+| awk | latest | enhancer_bed_processing.cwl | CommandLineTool | ubuntu:latest |
 
 ## Workflow structure
 
